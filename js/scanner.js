@@ -17,6 +17,7 @@ function setupScanner() {
   }
 
   document.getElementById("back-link").hidden = user.role !== "instructor";
+  document.getElementById("attendance-link").hidden = user.role !== "classrep";
   document.getElementById("class-name").textContent = course.code + " · " + course.title + " · " + course.section;
   document.getElementById("camera-btn").addEventListener("click", toggleCamera);
 }

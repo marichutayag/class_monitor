@@ -248,14 +248,6 @@ ul {
   padding: 12px 16px 0;
 }
 
-.hero-top {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 16px;
-}
-
 .hero-label {
   font-size: 14px;
   font-weight: 600;
@@ -437,16 +429,6 @@ ul {
 .btn-soft:hover {
   background: var(--primary);
   color: #fff;
-}
-
-.btn-white {
-  background: #fff;
-  color: var(--primary-dark);
-  box-shadow: 0 10px 24px -12px rgba(0, 0, 0, 0.4);
-}
-
-.btn-white:hover {
-  background: var(--primary-soft);
 }
 
 .btn-danger {

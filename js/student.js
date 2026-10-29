@@ -1,4 +1,4 @@
-const user = requireRole(["student"]);
+const user = requireRole(["student", "classrep"]);
 let qrCode = null;
 let qrTimer = null;
 
@@ -18,6 +18,7 @@ function showGreeting() {
   document.getElementById("hero-title").textContent = greeting() + ", " + user.nickname;
   document.getElementById("class-name").textContent = course.code + " · " + course.title;
   document.getElementById("class-schedule").textContent = course.schedule + " · " + course.room;
+  document.getElementById("scanner-link").hidden = user.role !== "classrep";
 }
 
 function showToday() {
