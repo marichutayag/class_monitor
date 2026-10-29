@@ -134,36 +134,6 @@
   }
 }
 
-.divider {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 20px 0 12px;
-  color: var(--muted);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.divider::before,
-.divider::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: var(--border);
-}
-
-.manual {
-  display: flex;
-  gap: 8px;
-}
-
-.manual .input {
-  flex: 1;
-  min-width: 0;
-}
-
 .result {
   display: flex;
   flex-wrap: wrap;

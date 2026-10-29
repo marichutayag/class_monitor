@@ -1,4 +1,6 @@
 const user = requireRole(["student"]);
+let qrCode = null;
+let qrTimer = null;
 
 if (user) {
   setupHeader(user);
@@ -137,6 +139,7 @@ function setupTimeIn() {
 
   document.getElementById("time-in-btn").addEventListener("click", function () {
     dialog.showModal();
+    startQr();
   });
 
   dialog.addEventListener("click", function (event) {
@@ -145,17 +148,38 @@ function setupTimeIn() {
     }
   });
 
+  dialog.addEventListener("close", stopQr);
+
   if (typeof QRCode === "undefined") {
     document.getElementById("qr-code").textContent = "Couldn't load the QR code. Check your internet connection.";
     return;
   }
 
-  new QRCode(document.getElementById("qr-code"), {
-    text: user.studentId,
+  qrCode = new QRCode(document.getElementById("qr-code"), {
+    text: qrText(),
     width: 440,
     height: 440,
     colorDark: "#13221a",
     colorLight: "#ffffff",
     correctLevel: QRCode.CorrectLevel.M
   });
+}
+
+function qrText() {
+  return user.studentId + "|" + Math.floor(Date.now() / 1000);
+}
+
+function startQr() {
+  stopQr();
+  if (!qrCode) {
+    return;
+  }
+  qrCode.makeCode(qrText());
+  qrTimer = setInterval(function () {
+    qrCode.makeCode(qrText());
+  }, course.qrRefresh * 1000);
+}
+
+function stopQr() {
+  clearInterval(qrTimer);
 }

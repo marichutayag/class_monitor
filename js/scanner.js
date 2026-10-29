@@ -1,7 +1,7 @@
 const user = requireRole(["classrep", "instructor"]);
 let reader = null;
 let cameraOn = false;
-let lastCode = "";
+let lastId = "";
 let lastScanTime = 0;
 
 if (user) {
@@ -19,13 +19,6 @@ function setupScanner() {
   document.getElementById("back-link").hidden = user.role !== "instructor";
   document.getElementById("class-name").textContent = course.code + " · " + course.title + " · " + course.section;
   document.getElementById("camera-btn").addEventListener("click", toggleCamera);
-
-  document.getElementById("manual-form").addEventListener("submit", function (event) {
-    event.preventDefault();
-    const input = document.getElementById("manual-id");
-    recordAttendance(input.value.trim());
-    input.value = "";
-  });
 }
 
 function showSession() {
@@ -45,7 +38,7 @@ function toggleCamera() {
   const button = document.getElementById("camera-btn");
 
   if (typeof Html5Qrcode === "undefined") {
-    showError("Scanner unavailable", "Check your internet connection, or type the Student ID below.");
+    showError("Scanner unavailable", "Check your internet connection, then reload the page.");
     return;
   }
 
@@ -68,7 +61,7 @@ function toggleCamera() {
     })
     .catch(function () {
       setCamera(false);
-      showError("Camera unavailable", "Allow camera access, or type the Student ID below.");
+      showError("Camera unavailable", "Allow camera access for this site in your browser settings, then try again.");
     });
 }
 
@@ -87,15 +80,29 @@ function setCamera(on) {
 }
 
 function handleScan(text) {
+  const parts = text.trim().split("|");
+  const id = parts[0];
+  const madeAt = Number(parts[1]) * 1000;
   const now = Date.now();
 
-  if (text === lastCode && now - lastScanTime < 5000) {
+  if (id === lastId && now - lastScanTime < 5000) {
     return;
   }
 
-  lastCode = text;
+  lastId = id;
   lastScanTime = now;
-  recordAttendance(text.trim());
+
+  if (parts.length !== 2 || !madeAt) {
+    showError("Not a Class Monitor code", "Ask the student to tap Time In on their dashboard.");
+    return;
+  }
+
+  if (Math.abs(now - madeAt) > course.qrValid * 1000) {
+    showError("QR code expired", "");
+    return;
+  }
+
+  recordAttendance(id);
 }
 
 function recordAttendance(id) {
@@ -135,6 +142,7 @@ function recordAttendance(id) {
 
 function showResult(student, scan, title) {
   const result = document.getElementById("result");
+  result.hidden = false;
   result.className = "card result " + scan.status;
   result.innerHTML = `
     <span class="avatar large">${getInitials(student.name)}</span>
@@ -148,6 +156,7 @@ function showResult(student, scan, title) {
 
 function showError(title, text) {
   const result = document.getElementById("result");
+  result.hidden = false;
   result.className = "card result error";
   result.innerHTML = `
     <span class="result-icon"><span class="material-symbols-rounded" aria-hidden="true">error</span></span>

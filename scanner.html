@@ -88,24 +88,11 @@
             <span class="material-symbols-rounded" aria-hidden="true">photo_camera</span>
             Start camera
           </button>
-
-          <p class="divider">or enter Student ID</p>
-
-          <form class="manual" id="manual-form">
-            <input class="input" id="manual-id" placeholder="e.g. 202612345" autocomplete="off" aria-label="Student ID" required>
-            <button class="btn btn-soft" type="submit">Record</button>
-          </form>
         </div>
       </section>
 
       <div class="column">
-        <section class="card result" id="result" aria-live="polite">
-          <span class="result-icon"><span class="material-symbols-rounded" aria-hidden="true">qr_code_2</span></span>
-          <div class="result-info">
-            <p class="result-title">Ready to scan</p>
-            <span>Scan a QR code or enter a Student ID to record attendance.</span>
-          </div>
-        </section>
+        <section class="card result" id="result" aria-live="polite" hidden></section>
 
         <section class="card">
           <div class="card-head">

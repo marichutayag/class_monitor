@@ -57,7 +57,9 @@ const course = {
   days: [1, 3],
   start: "2026-08-17",
   end: "2026-12-18",
-  grace: 15
+  grace: 15,
+  qrRefresh: 5,
+  qrValid: 10
 };
 
 const students = [
