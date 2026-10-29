@@ -25,3 +25,13 @@ document.getElementById("login-form").addEventListener("submit", function (event
 document.getElementById("login-form").addEventListener("input", function () {
   document.getElementById("login-error").textContent = "";
 });
+
+document.getElementById("password-toggle").addEventListener("click", function () {
+  const input = document.getElementById("password");
+  const button = document.getElementById("password-toggle");
+  const hidden = input.type === "password";
+
+  input.type = hidden ? "text" : "password";
+  button.querySelector(".material-symbols-rounded").textContent = hidden ? "visibility_off" : "visibility";
+  button.setAttribute("aria-label", hidden ? "Hide password" : "Show password");
+});
