@@ -1,0 +1,177 @@
+.login-page {
+  display: grid;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.login-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 24px 20px 104px;
+  color: #fff;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(255, 255, 255, 0.12) 0 220px, transparent 221px),
+    radial-gradient(circle at 0% 100%, rgba(255, 255, 255, 0.08) 0 260px, transparent 261px),
+    linear-gradient(140deg, var(--primary), var(--primary-dark));
+}
+
+.login-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.login-logo img {
+  width: 52px;
+  height: 52px;
+  padding: 3px;
+  border-radius: 50%;
+  background: #fff;
+  object-fit: contain;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.login-intro h1 {
+  font-size: clamp(30px, 7vw, 48px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.login-intro h1 span {
+  color: var(--gold);
+}
+
+.login-intro p {
+  max-width: 460px;
+  margin-top: 12px;
+  opacity: 0.9;
+}
+
+.login-features {
+  display: none;
+  gap: 14px;
+  margin-top: 36px;
+}
+
+.login-features li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-weight: 600;
+}
+
+.login-features .material-symbols-rounded {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.login-school {
+  display: none;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+  opacity: 0.92;
+}
+
+.login-school img {
+  width: 46px;
+  height: 46px;
+}
+
+.login-panel {
+  margin-top: -72px;
+  padding: 0 16px 32px;
+}
+
+.login-card {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 28px 24px;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  animation: rise 0.5s ease both;
+}
+
+.login-card h2 {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.login-card > .muted {
+  margin: 4px 0 24px;
+  font-size: 14px;
+}
+
+.input-icon {
+  position: relative;
+}
+
+.input-icon .material-symbols-rounded {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  color: var(--muted);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.input-icon .input {
+  padding-left: 44px;
+}
+
+.login-card .btn {
+  margin-top: 10px;
+}
+
+.login-credit {
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+
+@media (min-width: 900px) {
+  .login-page {
+    grid-template-columns: 1.1fr 1fr;
+  }
+
+  .login-brand {
+    justify-content: space-between;
+    padding: 40px 56px;
+  }
+
+  .login-features {
+    display: grid;
+  }
+
+  .login-school {
+    display: flex;
+  }
+
+  .login-panel {
+    display: grid;
+    place-items: center;
+    margin-top: 0;
+    padding: 40px;
+  }
+
+  .login-card {
+    width: 100%;
+    padding: 36px 32px;
+  }
+}

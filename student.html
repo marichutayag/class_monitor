@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard · Class Monitor</title>
+  <link rel="icon" href="assets/gc-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,500,0..1,0&display=block">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/student.css">
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</head>
+<body>
+  <div class="band">
+    <header class="topbar">
+      <a class="brand" id="brand-link" href="student.html">
+        <img src="assets/gc-logo.png" alt="Gordon College logo">
+        <span>Class Monitor</span>
+      </a>
+      <div class="profile">
+        <button class="profile-btn user-initials" id="profile-btn" type="button" aria-label="Open profile menu" aria-expanded="false" aria-controls="profile-menu"></button>
+        <div class="profile-menu" id="profile-menu">
+          <div class="menu-user">
+            <span class="avatar user-initials"></span>
+            <div>
+              <strong id="menu-name"></strong>
+              <small id="menu-role"></small>
+            </div>
+          </div>
+          <a class="menu-item" href="settings.html">
+            <span class="material-symbols-rounded" aria-hidden="true">settings</span>
+            Settings
+          </a>
+          <button class="menu-item logout" id="logout-btn" type="button">
+            <span class="material-symbols-rounded" aria-hidden="true">logout</span>
+            Log out
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <p class="hero-label" id="hero-date"></p>
+      <h1 id="hero-title">Welcome</h1>
+    </section>
+  </div>
+
+  <main class="container">
+    <div class="grid">
+      <div class="column">
+        <section class="card">
+          <div class="card-head">
+            <div class="card-title">
+              <span class="icon-chip"><span class="material-symbols-rounded" aria-hidden="true">how_to_reg</span></span>
+              <div>
+                <h2>Daily Attendance Log</h2>
+                <p id="class-name"></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="today-box">
+            <div>
+              <p class="today-date" id="today-date"></p>
+              <div class="today-status" id="today-status"></div>
+              <p class="today-schedule" id="class-schedule"></p>
+            </div>
+            <button class="btn btn-primary btn-small" id="time-in-btn" type="button">
+              <span class="material-symbols-rounded" aria-hidden="true">qr_code_2</span>
+              <span id="time-in-label">Time In</span>
+            </button>
+          </div>
+
+          <p class="section-label">Recent days</p>
+          <ul id="recent-list"></ul>
+        </section>
+
+        <section class="card">
+          <div class="card-head">
+            <div class="card-title">
+              <span class="icon-chip"><span class="material-symbols-rounded" aria-hidden="true">calendar_month</span></span>
+              <div>
+                <h2>Attendance Calendar</h2>
+                <p>Your record this semester</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="calendar-bar">
+            <button class="icon-btn" id="prev-month" type="button" aria-label="Previous month">
+              <span class="material-symbols-rounded" aria-hidden="true">chevron_left</span>
+            </button>
+            <h3 id="calendar-month"></h3>
+            <button class="icon-btn" id="next-month" type="button" aria-label="Next month">
+              <span class="material-symbols-rounded" aria-hidden="true">chevron_right</span>
+            </button>
+          </div>
+
+          <div class="weekdays">
+            <span>Sun</span>
+            <span>Mon</span>
+            <span>Tue</span>
+            <span>Wed</span>
+            <span>Thu</span>
+            <span>Fri</span>
+            <span>Sat</span>
+          </div>
+          <div class="days" id="calendar-days"></div>
+
+          <ul class="legend">
+            <li><span class="dot present"></span>Present</li>
+            <li><span class="dot late"></span>Late</li>
+            <li><span class="dot absent"></span>Absent</li>
+            <li><span class="dot excused"></span>Excused</li>
+            <li><span class="dot upcoming"></span>Upcoming class</li>
+          </ul>
+
+          <div class="day-details" id="day-details"></div>
+        </section>
+      </div>
+
+      <div class="column">
+        <section class="card">
+          <div class="card-head">
+            <div class="card-title">
+              <span class="icon-chip"><span class="material-symbols-rounded" aria-hidden="true">description</span></span>
+              <div>
+                <h2>Excuse Request</h2>
+                <p>For absences with a valid reason</p>
+              </div>
+            </div>
+          </div>
+
+          <form id="excuse-form">
+            <div class="field">
+              <label for="excuse-date">Date of absence</label>
+              <input class="input" type="date" id="excuse-date" required>
+            </div>
+            <div class="field">
+              <label for="excuse-reason">Reason</label>
+              <select class="input" id="excuse-reason" required>
+                <option value="" disabled selected>Select a reason</option>
+                <option>Illness</option>
+                <option>Medical appointment</option>
+                <option>Family emergency</option>
+                <option>School activity</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="excuse-details">Details</label>
+              <textarea class="input" id="excuse-details" placeholder="Briefly explain your absence" required></textarea>
+            </div>
+            <div class="field">
+              <label for="excuse-file">Excuse letter or medical certificate</label>
+              <input class="input" type="file" id="excuse-file" accept="image/*,.pdf">
+            </div>
+            <button class="btn btn-primary btn-block" type="submit">
+              <span class="material-symbols-rounded" aria-hidden="true">send</span>
+              Submit request
+            </button>
+            <p class="message" id="excuse-message" role="status"></p>
+          </form>
+
+          <p class="section-label">My requests</p>
+          <ul id="request-list"></ul>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <dialog class="qr-dialog" id="qr-dialog" aria-labelledby="qr-title">
+    <div class="qr-inner">
+      <p class="qr-kicker">Time In</p>
+      <h2 id="qr-title">Show this to your class rep</h2>
+      <div class="qr-code" id="qr-code"></div>
+      <strong class="qr-name" id="qr-name"></strong>
+      <span class="qr-id" id="qr-id"></span>
+      <form method="dialog">
+        <button class="btn btn-soft btn-block" type="submit">Done</button>
+      </form>
+    </div>
+  </dialog>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="js/attendance.js"></script>
+  <script src="js/calendar.js"></script>
+  <script src="js/student.js"></script>
+</body>
+</html>

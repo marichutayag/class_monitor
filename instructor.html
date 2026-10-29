@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instructor · Class Monitor</title>
+  <link rel="icon" href="assets/gc-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,500,0..1,0&display=block">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/instructor.css">
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</head>
+<body>
+  <div class="band">
+    <header class="topbar">
+      <a class="brand" id="brand-link" href="instructor.html">
+        <img src="assets/gc-logo.png" alt="Gordon College logo">
+        <span>Class Monitor</span>
+      </a>
+      <div class="profile">
+        <button class="profile-btn user-initials" id="profile-btn" type="button" aria-label="Open profile menu" aria-expanded="false" aria-controls="profile-menu"></button>
+        <div class="profile-menu" id="profile-menu">
+          <div class="menu-user">
+            <span class="avatar user-initials"></span>
+            <div>
+              <strong id="menu-name"></strong>
+              <small id="menu-role"></small>
+            </div>
+          </div>
+          <a class="menu-item" href="settings.html">
+            <span class="material-symbols-rounded" aria-hidden="true">settings</span>
+            Settings
+          </a>
+          <button class="menu-item logout" id="logout-btn" type="button">
+            <span class="material-symbols-rounded" aria-hidden="true">logout</span>
+            Log out
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-top">
+        <div>
+          <p class="hero-label" id="hero-date"></p>
+          <h1 id="hero-title">Welcome</h1>
+          <p class="hero-text" id="hero-class"></p>
+        </div>
+        <a class="btn btn-white" href="scanner.html">
+          <span class="material-symbols-rounded" aria-hidden="true">qr_code_scanner</span>
+          Open Scanner
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <main class="container">
+    <div class="grid wide">
+      <div class="column">
+        <section class="card">
+          <div class="card-head">
+            <div class="card-title">
+              <span class="icon-chip"><span class="material-symbols-rounded" aria-hidden="true">timer</span></span>
+              <div>
+                <h2>Attendance Session</h2>
+                <p id="session-schedule"></p>
+              </div>
+            </div>
+          </div>
+
+          <div id="session-idle">
+            <p class="session-note">Start today's session before scanning. Students scanned after the grace period are marked Late.</p>
+            <div class="session-form">
+              <div class="field">
+                <label for="grace-select">Grace period</label>
+                <select class="input" id="grace-select">
+                  <option value="5">5 minutes</option>
+                  <option value="10">10 minutes</option>
+                  <option value="15" selected>15 minutes</option>
+                  <option value="20">20 minutes</option>
+                  <option value="30">30 minutes</option>
+                </select>
+              </div>
+              <button class="btn btn-primary" id="start-btn" type="button">
+                <span class="material-symbols-rounded" aria-hidden="true">play_arrow</span>
+                Start session
+              </button>
+            </div>
+          </div>
+
+          <div id="session-open" hidden>
+            <div class="session-status">
+              <span class="live-dot"></span>
+              <div>
+                <strong>Session is open</strong>
+                <span class="session-time" id="open-text"></span>
+              </div>
+            </div>
+            <div class="session-actions">
+              <a class="btn btn-soft" href="scanner.html">
+                <span class="material-symbols-rounded" aria-hidden="true">qr_code_scanner</span>
+                Open Scanner
+              </a>
+              <button class="btn btn-danger" id="end-btn" type="button">
+                <span class="material-symbols-rounded" aria-hidden="true">stop_circle</span>
+                End session
+              </button>
+            </div>
+          </div>
+
+          <div id="session-closed" hidden>
+            <div class="session-status ended">
+              <span class="live-dot"></span>
+              <div>
+                <strong>Session closed</strong>
+                <span class="session-time" id="closed-text"></span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-head">
+            <div class="card-title">
+              <span class="icon-chip"><span class="material-symbols-rounded" aria-hidden="true">today</span></span>
+              <div>
+                <h2>Today</h2>
+                <p id="today-label"></p>
+              </div>
+            </div>
+          </div>
+          <div class="stats">
+            <div class="stat present">
+              <span class="stat-number" id="count-present">0</span>
+              <span class="stat-label">Present</span>
+            </div>
+            <div class="stat late">
+              <span class="stat-number" id="count-late">0</span>
+              <span class="stat-label">Late</span>
+            </div>
+            <div class="stat absent">
+              <span class="stat-number" id="count-absent">0</span>
+              <span class="stat-label">Absent</span>
+            </div>
+            <div class="stat waiting">
+              <span class="stat-number" id="count-waiting">0</span>
+              <span class="stat-label">Not yet scanned</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-head">
+            <div class="card-title">
+              <span class="icon-chip"><span class="material-symbols-rounded" aria-hidden="true">table_view</span></span>
+              <div>
+                <h2>Class Records</h2>
+                <p>Totals this semester</p>
+              </div>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="records">
+              <thead>
+                <tr>
+                  <th>Student</th>
+                  <th><span class="dot present"></span>Present</th>
+                  <th><span class="dot late"></span>Late</th>
+                  <th><span class="dot absent"></span>Absent</th>
+                  <th><span class="dot excused"></span>Excused</th>
+                  <th>Today</th>
+                </tr>
+              </thead>
+              <tbody id="records-body"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <div class="column">
+        <section class="card">
+          <div class="card-head">
+            <div class="card-title">
+              <span class="icon-chip"><span class="material-symbols-rounded" aria-hidden="true">inbox</span></span>
+              <div>
+                <h2>Excuse Requests</h2>
+                <p id="pending-text"></p>
+              </div>
+            </div>
+          </div>
+          <ul class="requests" id="request-list"></ul>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/attendance.js"></script>
+  <script src="js/instructor.js"></script>
+</body>
+</html>
