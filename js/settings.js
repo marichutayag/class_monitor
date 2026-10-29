@@ -34,7 +34,7 @@ function setupThemes() {
 
 function setupReset() {
   document.getElementById("reset-btn").addEventListener("click", function () {
-    if (!confirm("Clear all saved scans, sessions and excuse requests on this browser?")) {
+    if (!confirm("Clear all demo data?")) {
       return;
     }
 

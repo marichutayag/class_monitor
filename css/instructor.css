@@ -1,9 +1,3 @@
-.session-note {
-  margin-bottom: 16px;
-  color: var(--muted);
-  font-size: 14px;
-}
-
 .session-form {
   display: flex;
   flex-wrap: wrap;

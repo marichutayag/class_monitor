@@ -85,7 +85,7 @@ function setupExcuseForm() {
     });
 
     if (alreadySent) {
-      message.textContent = "You already sent a request for this date.";
+      message.textContent = "Already sent for this date.";
       message.className = "message error";
       return;
     }
@@ -102,7 +102,7 @@ function setupExcuseForm() {
 
     saveList("cm-excuses", excuses);
     form.reset();
-    message.textContent = "Request sent. Your instructor will review it soon.";
+    message.textContent = "Request sent.";
     message.className = "message success";
     showRequests();
   });
@@ -151,7 +151,7 @@ function setupTimeIn() {
   dialog.addEventListener("close", stopQr);
 
   if (typeof QRCode === "undefined") {
-    document.getElementById("qr-code").textContent = "Couldn't load the QR code. Check your internet connection.";
+    document.getElementById("qr-code").textContent = "QR code unavailable.";
     return;
   }
 

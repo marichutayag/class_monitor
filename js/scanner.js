@@ -38,7 +38,7 @@ function toggleCamera() {
   const button = document.getElementById("camera-btn");
 
   if (typeof Html5Qrcode === "undefined") {
-    showError("Scanner unavailable", "Check your internet connection, then reload the page.");
+    showError("Scanner unavailable", "");
     return;
   }
 
@@ -61,7 +61,7 @@ function toggleCamera() {
     })
     .catch(function () {
       setCamera(false);
-      showError("Camera unavailable", "Allow camera access for this site in your browser settings, then try again.");
+      showError("Camera unavailable", "");
     });
 }
 
@@ -93,7 +93,7 @@ function handleScan(text) {
   lastScanTime = now;
 
   if (parts.length !== 2 || !madeAt) {
-    showError("Not a Class Monitor code", "Ask the student to tap Time In on their dashboard.");
+    showError("Invalid QR code", "");
     return;
   }
 
@@ -110,12 +110,12 @@ function recordAttendance(id) {
   const session = getSession() || startSession(course.grace);
 
   if (!student) {
-    showError("Not on the class list", `No student in ${course.section} has the ID "${safeText(id)}".`);
+    showError("Not on the class list", safeText(id));
     return;
   }
 
   if (session.end) {
-    showError("Session closed", "Today's attendance session has already ended.");
+    showError("Session closed", "");
     return;
   }
 

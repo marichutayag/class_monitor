@@ -22,7 +22,7 @@ function setupActions() {
   });
 
   document.getElementById("end-btn").addEventListener("click", function () {
-    if (confirm("End today's session? Students who haven't been scanned will be marked Absent.")) {
+    if (confirm("End today's session?")) {
       endSession();
       showDashboard();
     }
