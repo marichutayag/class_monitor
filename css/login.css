@@ -46,32 +46,43 @@
   color: var(--gold);
 }
 
-.login-intro p {
-  max-width: 460px;
-  margin-top: 12px;
-  opacity: 0.9;
-}
-
-.login-features {
+.mission-vision {
   display: none;
-  gap: 14px;
+  gap: 22px;
+  max-width: 480px;
   margin-top: 36px;
 }
 
-.login-features li {
+.mv-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 14px;
-  font-weight: 600;
 }
 
-.login-features .material-symbols-rounded {
+.mv-item .material-symbols-rounded {
   display: grid;
+  flex-shrink: 0;
   place-items: center;
   width: 42px;
   height: 42px;
   border-radius: 13px;
   background: rgba(255, 255, 255, 0.14);
+}
+
+.mv-item h2 {
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.mv-item p {
+  margin-top: 4px;
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.9;
 }
 
 .login-school {
@@ -151,7 +162,7 @@
     padding: 40px 56px;
   }
 
-  .login-features {
+  .mission-vision {
     display: grid;
   }
 
