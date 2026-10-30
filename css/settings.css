@@ -41,7 +41,7 @@
 
 .themes {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
 }
 
@@ -117,6 +117,10 @@ input:checked + .swatch .material-symbols-rounded {
   background: linear-gradient(135deg, #db2777, #831843);
 }
 
+.swatch.yellow {
+  background: linear-gradient(135deg, #ca8a04, #854d0e);
+}
+
 .about {
   text-align: center;
 }
@@ -173,6 +177,6 @@ input:checked + .swatch .material-symbols-rounded {
 
 @media (min-width: 640px) {
   .themes {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 }

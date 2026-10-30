@@ -46,6 +46,13 @@
   --bg: #fbf4f7;
 }
 
+[data-theme="yellow"] {
+  --primary: #ca8a04;
+  --primary-dark: #854d0e;
+  --primary-soft: #fdf6d8;
+  --bg: #fbf8ef;
+}
+
 *,
 *::before,
 *::after {
